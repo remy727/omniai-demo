@@ -56,3 +56,7 @@ end
 
 
 gem "dotenv-rails", "~> 3.1"
+
+gem "omniai", "~> 1.7"
+gem "omniai-openai", "~> 1.7"
+gem "neighbor", "~> 0.4.0"
