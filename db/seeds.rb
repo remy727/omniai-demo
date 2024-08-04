@@ -1,9 +1,13 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+Product.create!(name: 'Chair', summary: 'Made of solid oak.')
+Product.create!(name: 'Table', summary: 'Made of solid maple.')
+Product.create!(name: 'Toaster', summary: 'The perfect companion for a loaf of bread.')
+Product.create!(name: 'Microwave', summary: 'Used to heat foods.')
+Product.create!(name: 'Fridge', summary: 'Used to cool foods.')
+
+openai = OmniAI::OpenAI::Client.new
+
+Product.all.each do |product|
+  response = openai.embed(product.text)
+  embedding = product.build_embedding(embedding: response.embedding)
+  embedding.save!
+end
