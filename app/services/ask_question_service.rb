@@ -1,7 +1,11 @@
-class AskService
+# frozen_string_literal: true
+
+# rubocop:disable Layout/LineLength
+class AskQuestionService < ApplicationService
   attr_reader :question
 
   def initialize(question)
+    super
     @question = question
   end
 
@@ -17,7 +21,7 @@ class AskService
     products = Product.nearest_neighbors(response.embedding).first(3)
 
     openai.chat(stream: $stdout) do |prompt|
-      prompt.system('You are a helpful assistant that answers a question (<question>...</question>) using the attached products (<products>...</products>).')
+      prompt.system("You are a helpful assistant that answers a question (<question>...</question>) using the attached products (<products>...</products>).")
       prompt.user(<<~TEXT)
         <question>#{question}</question>
         <products>
@@ -27,3 +31,4 @@ class AskService
     end
   end
 end
+# rubocop:enable Layout/LineLength

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Product < ApplicationRecord
   has_one :embedding, inverse_of: :resource
 
@@ -5,7 +7,7 @@ class Product < ApplicationRecord
   validates :summary, presence: true
 
   def text
-    "#{name}: #{summary}".gsub("\n", ' ')
+    "#{name}: #{summary}".gsub("\n", " ")
   end
 
   scope :nearest_neighbors, ->(embedding, distance: :cosine) {

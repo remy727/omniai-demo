@@ -1,0 +1,16 @@
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 3.3.4
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  ExtraDetails: true
+  UseCache: true
+  CacheRootDirectory: tmp
+  NewCops: enable
+  Exclude:
+    - 'bin/*'
+    - 'config/**/*'
+    - 'db/schema.rb'
+    - 'vendor/**/*'

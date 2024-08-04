@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class EnableExtensionVector < ActiveRecord::Migration[7.1]
   def change
-    enable_extension 'vector'
+    enable_extension("vector")
   end
 end
